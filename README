@@ -16,5 +16,14 @@ It will take about 5 minutes on a modern Mac. The result of the build can be fou
  lib/ - will contain libssl.a and libcrypto.a
  include/ - will contain all OpenSSL headers
 
+If you just want cryptographic functions then you can skip libssl.a and just add
+libcrypto.a to your project.
+
+Making your code find the OpenSSL headers works best if the path to the include director is
+added to the 'Header Search Paths' in your target settings.
+
+The Example directory contains a little sample app. It calculates a SHA1 digest using
+the OpenSSL API.
+
 Enjoy.
 
