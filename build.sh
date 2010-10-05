@@ -60,7 +60,7 @@ rm -rf openssl-1.0.0a
 #
 
 mkdir include
-cp -r /tmp/openssl-1.0.0a-i386/include/openssl/* include/
+cp -r /tmp/openssl-1.0.0a-i386/include/openssl include/
 
 mkdir lib
 lipo \
