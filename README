@@ -1,0 +1,20 @@
+This script builds OpenSSL 1.0.0a for iOS.
+
+It builds multi-architecture libaries with armv6, armv7 and i386.
+
+This script is known to work with the following combination of software versions:
+
+ * MacOS X 10.6.4
+ * XCode 3.2.4 & iOS SDK 4.1
+
+Building is done by invoking the build.sh script:
+
+ ./build.sh
+
+It will take about 5 minutes on a modern Mac. The result of the build can be found at:
+
+ lib/ - will contain libssl.a and libcrypto.a
+ include/ - will contain all OpenSSL headers
+
+Enjoy.
+
