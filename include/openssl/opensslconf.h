@@ -4,14 +4,12 @@
 /* OpenSSL was configured with the following options: */
 #ifndef OPENSSL_DOING_MAKEDEPEND
 
-#ifndef OPENSSL_EXPERIMENTAL_JPAKE
-# ifndef OPENSSL_NO_JPAKE
-#  define OPENSSL_NO_JPAKE
-# endif
-#endif
 
 #ifndef OPENSSL_NO_GMP
 # define OPENSSL_NO_GMP
+#endif
+#ifndef OPENSSL_NO_JPAKE
+# define OPENSSL_NO_JPAKE
 #endif
 #ifndef OPENSSL_NO_KRB5
 # define OPENSSL_NO_KRB5
@@ -45,6 +43,9 @@
 #ifdef OPENSSL_ALGORITHM_DEFINES
 # if defined(OPENSSL_NO_GMP) && !defined(NO_GMP)
 #  define NO_GMP
+# endif
+# if defined(OPENSSL_NO_JPAKE) && !defined(NO_JPAKE)
+#  define NO_JPAKE
 # endif
 # if defined(OPENSSL_NO_KRB5) && !defined(NO_KRB5)
 #  define NO_KRB5
