@@ -25,5 +25,15 @@ added to the 'Header Search Paths' in your target settings.
 The Example directory contains a little sample app. It calculates a SHA1 digest using
 the OpenSSL API.
 
-Enjoy.
+IMPORTANT
+
+I included pre-compiled binaries of the openssl libraries in this project mostly for my
+own convenience. But you should really not trust me and do two things:
+
+ 1) Verify that the openssl-1.0.0a.tar.gz file is authentic by comparing it's SHA1
+    hash to the one found on http://www.openssl.org/source/ You can do this with
+    the 'openssl sha1 openssl-1.0.0a.tar.gz' command.
+ 2) Compile your own version of the library as explained above
+
+Enjoy :-)
 
