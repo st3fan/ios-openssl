@@ -1,6 +1,7 @@
 This script builds OpenSSL 1.0.1b for iOS.
 
-It builds multi-architecture libaries with armv7, armv7s (iPhone 5) and i386.
+It builds multi-architecture libaries with support for armv7, armv7s (iPhone 5) and
+i386 (for running in the simulator).
 
 This script is known to work with the following combination of software versions:
 
@@ -9,10 +10,10 @@ This script is known to work with the following combination of software versions
 
 The compiled libraries should be downward compatible to iOS 4.0 at least.
 
-Important: Support for ARMv6 has been removed because Xcode 4.5 does not support that
-architecture anymore. This means that these libraries cannot be used on the iPhone 3G
-or older. File an issue if that is a really big deal for you and I will try to work
-around that Xcode limitation.
+Important: Support for ARMv6 has been removed because Xcode 4.5 does not support
+that architecture anymore. This means that these libraries cannot be used on the
+iPhone 3G or older. File an issue if that is a really big deal for you and I will
+try to work around that Xcode limitation.
 
 Building is done by invoking the build.sh script:
 
