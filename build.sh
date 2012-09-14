@@ -11,7 +11,7 @@ OPENSSL_VERSION="1.0.1b"
 
 DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
-SDK_VERSION="5.1"
+SDK_VERSION="6.0"
 
 IPHONEOS_PLATFORM="${DEVELOPER}/Platforms/iPhoneOS.platform"
 IPHONEOS_SDK="${IPHONEOS_PLATFORM}/Developer/SDKs/iPhoneOS${SDK_VERSION}.sdk"
@@ -26,8 +26,6 @@ IPHONESIMULATOR_GCC="${IPHONESIMULATOR_PLATFORM}/Developer/usr/bin/gcc"
 rm -rf include lib
 rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*"
 rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*.log"
-
-# Build for ARMv6
 
 build()
 {
@@ -48,8 +46,8 @@ build()
    rm -rf "openssl-${OPENSSL_VERSION}"
 }
 
-build "armv6" "${IPHONEOS_GCC}" "${IPHONEOS_SDK}"
 build "armv7" "${IPHONEOS_GCC}" "${IPHONEOS_SDK}"
+build "armv7s" "${IPHONEOS_GCC}" "${IPHONEOS_SDK}"
 build "i386" "${IPHONESIMULATOR_GCC}" "${IPHONESIMULATOR_SDK}"
 
 #
@@ -59,13 +57,13 @@ cp -r /tmp/openssl-${OPENSSL_VERSION}-i386/include/openssl include/
 
 mkdir lib
 lipo \
-	"/tmp/openssl-${OPENSSL_VERSION}-armv6/lib/libcrypto.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-armv7/lib/libcrypto.a" \
+	"/tmp/openssl-${OPENSSL_VERSION}-armv7s/lib/libcrypto.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-i386/lib/libcrypto.a" \
 	-create -output lib/libcrypto.a
 lipo \
-	"/tmp/openssl-${OPENSSL_VERSION}-armv6/lib/libssl.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-armv7/lib/libssl.a" \
+	"/tmp/openssl-${OPENSSL_VERSION}-armv7s/lib/libssl.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-i386/lib/libssl.a" \
 	-create -output lib/libssl.a
 
