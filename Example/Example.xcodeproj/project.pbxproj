@@ -218,6 +218,7 @@
 					"\"$(SRCROOT)/../lib\"",
 				);
 				PRODUCT_NAME = Example;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -235,6 +236,7 @@
 					"\"$(SRCROOT)/../lib\"",
 				);
 				PRODUCT_NAME = Example;
+				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
