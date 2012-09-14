@@ -1,5 +1,8 @@
 This script builds OpenSSL 1.0.1c for iOS.
 
+Precompiled binaries and headers are also included and can be used directly in
+your project.
+
 It builds multi-architecture libaries with support for armv7, armv7s (iPhone 5) and
 i386 (for running in the simulator).
 
