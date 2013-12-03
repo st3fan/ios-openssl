@@ -1,31 +1,65 @@
 #!/bin/bash
 
 # Yay shell scripting! This script builds a static version of
-# OpenSSL ${OPENSSL_VERSION} for iOS 5.1 that contains code for armv6, armv7 and i386.
+# OpenSSL ${OPENSSL_VERSION} for iOS 7.0 that contains code for
+# armv6, armv7, arm7s and i386.
 
 set -x
 
 # Setup paths to stuff we need
 
-OPENSSL_VERSION="1.0.1c"
+OPENSSL_VERSION="1.0.1e"
 
 DEVELOPER="/Applications/Xcode.app/Contents/Developer"
 
-SDK_VERSION="6.0"
+SDK_VERSION="7.0"
+MIN_VERSION="4.3"
 
 IPHONEOS_PLATFORM="${DEVELOPER}/Platforms/iPhoneOS.platform"
 IPHONEOS_SDK="${IPHONEOS_PLATFORM}/Developer/SDKs/iPhoneOS${SDK_VERSION}.sdk"
-IPHONEOS_GCC="${IPHONEOS_PLATFORM}/Developer/usr/bin/gcc"
+IPHONEOS_GCC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
 
 IPHONESIMULATOR_PLATFORM="${DEVELOPER}/Platforms/iPhoneSimulator.platform"
 IPHONESIMULATOR_SDK="${IPHONESIMULATOR_PLATFORM}/Developer/SDKs/iPhoneSimulator${SDK_VERSION}.sdk"
-IPHONESIMULATOR_GCC="${IPHONESIMULATOR_PLATFORM}/Developer/usr/bin/gcc"
+IPHONESIMULATOR_GCC="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
+
+# Make sure things actually exist
+
+if [ ! -d "$IPHONEOS_PLATFORM" ]; then
+  echo "Cannot find $IPHONEOS_PLATFORM"
+  exit 1
+fi
+
+if [ ! -d "$IPHONEOS_SDK" ]; then
+  echo "Cannot find $IPHONEOS_SDK"
+  exit 1
+fi
+
+if [ ! -x "$IPHONEOS_GCC" ]; then
+  echo "Cannot find $IPHONEOS_GCC"
+  exit 1
+fi
+
+if [ ! -d "$IPHONESIMULATOR_PLATFORM" ]; then
+  echo "Cannot find $IPHONESIMULATOR_PLATFORM"
+  exit 1
+fi
+
+if [ ! -d "$IPHONESIMULATOR_SDK" ]; then
+  echo "Cannot find $IPHONESIMULATOR_SDK"
+  exit 1
+fi
+
+if [ ! -x "$IPHONESIMULATOR_GCC" ]; then
+  echo "Cannot find $IPHONESIMULATOR_GCC"
+  exit 1
+fi
 
 # Clean up whatever was left from our previous build
 
 rm -rf include lib
 rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*"
-rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*.log"
+rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*.*-log"
 
 build()
 {
@@ -38,10 +72,10 @@ build()
    cd "openssl-${OPENSSL_VERSION}"
    ./Configure BSD-generic32 --openssldir="/tmp/openssl-${OPENSSL_VERSION}-${ARCH}" &> "/tmp/openssl-${OPENSSL_VERSION}-${ARCH}.log"
    perl -i -pe 's|static volatile sig_atomic_t intr_signal|static volatile int intr_signal|' crypto/ui/ui_openssl.c
-   perl -i -pe "s|^CC= gcc|CC= ${GCC} -arch ${ARCH}|g" Makefile
+   perl -i -pe "s|^CC= gcc|CC= ${GCC} -arch ${ARCH} -miphoneos-version-min=${MIN_VERSION}|g" Makefile
    perl -i -pe "s|^CFLAG= (.*)|CFLAG= -isysroot ${SDK} \$1|g" Makefile
-   make &> "/tmp/openssl-${OPENSSL_VERSION}-${ARCH}.log"
-   make install &> "/tmp/openssl-${OPENSSL_VERSION}-${ARCH}.log"
+   make &> "/tmp/openssl-${OPENSSL_VERSION}-${ARCH}.build-log"
+   make install &> "/tmp/openssl-${OPENSSL_VERSION}-${ARCH}.install-log"
    popd
    rm -rf "openssl-${OPENSSL_VERSION}"
 }
@@ -68,5 +102,5 @@ lipo \
 	-create -output lib/libssl.a
 
 rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*"
-rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*.log"
+rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*.*-log"
 
