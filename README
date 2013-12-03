@@ -1,4 +1,4 @@
-This script builds OpenSSL 1.0.1c for iOS.
+This script builds OpenSSL 1.0.1e for iOS.
 
 Precompiled binaries and headers are also included and can be used directly in
 your project.
@@ -41,9 +41,9 @@ IMPORTANT
 I included pre-compiled binaries of the openssl libraries in this project mostly for my
 own convenience. But you should really not trust me and do two things:
 
- 1) Verify that the openssl-1.0.1c.tar.gz file is authentic by comparing it's SHA1
+ 1) Verify that the openssl-1.0.1e.tar.gz file is authentic by comparing it's SHA1
     hash to the one found on http://www.openssl.org/source/ You can do this with
-    the 'openssl sha1 openssl-1.0.1c.tar.gz' command.
+    the 'openssl sha1 openssl-1.0.1e.tar.gz' command.
  2) Compile your own version of the library as explained above
 
 Enjoy :-)
