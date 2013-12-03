@@ -3,8 +3,9 @@ This script builds OpenSSL 1.0.1e for iOS.
 Precompiled binaries and headers are also included and can be used directly in
 your project.
 
-It builds multi-architecture libaries with support for armv7, armv7s (iPhone 5) and
-i386 (for running in the simulator).
+It builds multi-architecture libaries with support for armv7, armv7s (iPhone 5),
+arm64 (iPhone 5S, iPad Air and iPad Mini Retina) and also for 32 and 64-bit
+Intel targets for running in the simulator.
 
 This script is known to work with the following combination of software versions:
 
