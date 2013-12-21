@@ -106,7 +106,7 @@ lipo \
 	"/tmp/openssl-${OPENSSL_VERSION}-armv7s/lib/libssl.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-arm64/lib/libssl.a" \
 	"/tmp/openssl-${OPENSSL_VERSION}-i386/lib/libssl.a" \
-	"/tmp/openssl-${OPENSSL_VERSION}-x86_64/lib/libcrypto.a" \
+	"/tmp/openssl-${OPENSSL_VERSION}-x86_64/lib/libssl.a" \
 	-create -output lib/libssl.a
 
 rm -rf "/tmp/openssl-${OPENSSL_VERSION}-*"
