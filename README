@@ -1,10 +1,11 @@
 This script builds OpenSSL 1.0.1g for iOS.
 
 
-WARNING Although I am still maintaining this project, I do not actually recommend using
-WARNING OpenSSL. If all you need is basic cryptographic primitives then I *highly* recommend
-WARNING to use the iOS provided APIs in for example CommonCrypto. That code is highly
-WARNING optimized better maintained and updated more easily since it is OS provided.
+WARNING Although I am still maintaining this project, I do not actually
+WARNING recommend using OpenSSL. If all you need is basic cryptographic
+WARNING primitives then I *highly* recommend to use the iOS provided APIs
+WARNING in for example CommonCrypto. That code is highly optimized better
+WARNING maintained and updated more easily since it is OS provided.
 
 
 Precompiled binaries and headers are also included and can be used directly in
